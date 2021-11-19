@@ -45,7 +45,6 @@ end ejemplos;
 
 
 
-
 --Ejercicio de Vector
 library ieee;
 --use nombre_libreria.nombrepaquete.all;
