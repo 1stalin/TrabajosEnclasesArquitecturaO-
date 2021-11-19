@@ -1,0 +1,104 @@
+--Trabajo1 VHDL.
+-- DEMO 01
+
+entity Tabla is
+port( A, B, C: in bit;
+    F0, F1: out bit):
+end Tabla;
+
+
+-- DEMO 02
+enity Circuito is
+port (a,b,c,d,f,g,h, : in bit; F1: out bit);
+end Circuito;
+
+--Demo 04
+--Referente a la integración de módulos.
+entity Proyecto is
+port (A3, A2, A1, A0, B3, B2, B2, B0: in bit;
+C3, C2, C1, C0: inout bit;
+S3,S2,S1 ,S0: out bit);
+end Proyecto;
+
+--ejercicios de la UNL
+--Demo Vectores
+
+entity Proyecto is
+port (A,B, : in bit_vector (3 downto 0);  C: inout bit_vector(3 downto 0); S: out bit_vector (3 downto 0));
+end Proyecto;
+
+--Ejercicio de Vector diapo 10
+entity Control is
+port (Q: in bit_vector (3 downto 0); F: out bit_vector (0 to 7));
+end Control;
+
+--Ejercicio de Vector diapo 12
+library ieee;
+--formato de librería
+--use nombre_libreria.nombrepaquete.all;
+use ieee.std_logic_1164.all;
+entity Bloque is
+port (X: in std_logic_vector(1 downto 0); A,B: in std_logic; Z: out std_logic_vector(0 to 3));
+end Bloque;
+
+
+
+--Ejercicio de estilo de flujo de datos
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity Tabla is
+port (A,B: in std_logic; F0, F1 : out std_logic);
+end Tabla;
+
+architecture flujo of tabla is
+begin
+	F0 <= '1' when (A='0' and B='0') else
+    	  '1' when  (A='0' and B='1') else
+          '0';
+    F1 <= '0' when (A='1' and B='1') else
+    		'1';
+end flujo
+
+
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity funcional is
+port (A,B: in std_logic; c : out std_logic);
+end funcional;
+
+architecture e_funcional of funcional is
+begin
+process(A,B)
+begin
+	if A = B then
+    c<='1';
+    else c<='0';
+    end if;
+end process;
+end e_funcional;
+
+
+
+--Ejercicio de estilo Estructural
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity composicion is
+port (A,B,C: in std_logic; F : out std_logic);
+end composicion;
+
+use work.gates.all;
+
+architecture estructural of composicion is
+signal x: bit_vector(0 to 2);
+begin
+U0: and2 port map (B,C, x(0));
+
+U1: and2 port map (C,A, x(1));
+
+U2: and2 port map (A,B, x(2));
+
+U3: or3 port map (x(0), x(1), x(2),F);
+end estructural;
