@@ -1,74 +1,95 @@
---Trabajo1 VHDL.
--- DEMO 01
+--clase1 VHDL.
+-- trabajo1
 
-entity Tabla is
+entity ejemplo1 is
 port( A, B, C: in bit;
     F0, F1: out bit):
-end Tabla;
+end ejemplo1;
 
 
--- DEMO 02
-enity Circuito is
-port (a,b,c,d,f,g,h, : in bit; F1: out bit);
-end Circuito;
 
---Demo 04
---Referente a la integración de módulos.
-entity Proyecto is
+
+--ejemplo 2
+enity ejemplo2 is
+port (a,b,c,d,f,g,h, : in bit; 
+F1: out bit);
+end ejemplo2;
+
+
+
+
+--ejemplo3
+entity ejemplo3 is
 port (A3, A2, A1, A0, B3, B2, B2, B0: in bit;
 C3, C2, C1, C0: inout bit;
 S3,S2,S1 ,S0: out bit);
-end Proyecto;
+end ejemplo3;
 
---ejercicios de la UNL
---Demo Vectores
+--clase 2
+--Vector
 
-entity Proyecto is
-port (A,B, : in bit_vector (3 downto 0);  C: inout bit_vector(3 downto 0); S: out bit_vector (3 downto 0));
-end Proyecto;
+entity ejemplo21 is
+port (A,B, : in bit_vector (3 downto 0);  
+C: inout bit_vector(3 downto 0); 
+S: out bit_vector (3 downto 0));
+end ejemplo21;
 
---Ejercicio de Vector diapo 10
-entity Control is
-port (Q: in bit_vector (3 downto 0); F: out bit_vector (0 to 7));
-end Control;
 
---Ejercicio de Vector diapo 12
+
+
+--Ejercicio de Vector
+entity ejemplos is
+port (Q: in bit_vector (3 downto 0); 
+F: out bit_vector (0 to 7));
+end ejemplos;
+
+
+
+
+--Ejercicio de Vector
 library ieee;
---formato de librería
 --use nombre_libreria.nombrepaquete.all;
 use ieee.std_logic_1164.all;
-entity Bloque is
-port (X: in std_logic_vector(1 downto 0); A,B: in std_logic; Z: out std_logic_vector(0 to 3));
-end Bloque;
+
+entity flujo is
+port (X: in std_logic_vector(1 downto 0); 
+A,B: in std_logic; 
+Z: out std_logic_vector(0 to 3));
+end flujo;
 
 
 
---Ejercicio de estilo de flujo de datos
+--ejemplo21
 library ieee;
 use ieee.std_logic_1164.all;
 
-entity Tabla is
-port (A,B: in std_logic; F0, F1 : out std_logic);
-end Tabla;
+entity ejemplor is
+port (A,B: in std_logic; 
+F0, F1 : out std_logic);
+end ejemplor;
 
-architecture flujo of tabla is
+architecture fluj of ejemplor is
 begin
 	F0 <= '1' when (A='0' and B='0') else
     	  '1' when  (A='0' and B='1') else
           '0';
     F1 <= '0' when (A='1' and B='1') else
     		'1';
-end flujo
+end fluj;
 
 
+
+
+--- ejemplo2
 library ieee;
 use ieee.std_logic_1164.all;
 
 entity funcional is
-port (A,B: in std_logic; c : out std_logic);
+port (A,B: in std_logic; 
+c : out std_logic);
 end funcional;
 
-architecture e_funcional of funcional is
+architecture proceso of funcional is
 begin
 process(A,B)
 begin
@@ -77,7 +98,59 @@ begin
     else c<='0';
     end if;
 end process;
-end e_funcional;
+end proceso;
+
+
+
+-- compuerta AND
+library IEEE;
+use IEEE.std_logic_1164.all;
+entity compuerta is
+port (A, B : in std_logic;
+F: out in std_logic );
+end compuerta;
+architecture AND of compuerta is
+begin 
+F <= '1' when (A = '1' and B = '1') 
+else'0'
+end AND;
+
+
+
+--compuerta or
+ library IEEE;
+use IEEE.std_logic_ll64.all;
+entity ejercicioor is
+port(
+A,B: IN std_logic;
+C: out std_logic);
+end ejercicio;
+architecture ord of ejercicioor is
+begin 
+process(A,B)
+begin
+if A = 1 or B= 1 or C=1 then
+C <= '1';
+else C<='0';
+end if;
+en process;
+end ord;
+
+
+
+--lección
+library ieee;
+use ieee.std_Logic_1164.all;
+entity leccion is 
+port(A, B, C, D: in std_logic;
+f1: out std_logic);
+end leccion;
+architecture prueba of leccion is 
+begin
+f1 <= (A OR B) XNOR (C AND D); 
+end prueba
+
+
 
 
 
@@ -85,9 +158,10 @@ end e_funcional;
 library ieee;
 use ieee.std_logic_1164.all;
 
-entity composicion is
-port (A,B,C: in std_logic; F : out std_logic);
-end composicion;
+entity compos is
+port (A,B,C: in std_logic; 
+F : out std_logic);
+end compos;
 
 use work.gates.all;
 
@@ -95,10 +169,119 @@ architecture estructural of composicion is
 signal x: bit_vector(0 to 2);
 begin
 U0: and2 port map (B,C, x(0));
-
 U1: and2 port map (C,A, x(1));
-
 U2: and2 port map (A,B, x(2));
-
 U3: or3 port map (x(0), x(1), x(2),F);
 end estructural;
+
+
+
+--ejemplo tabla 
+--X = ABC + ÁBC + ÀBC + ABC 
+--Y = ÁBC + ABC + ABC 
+--Z = ÁBC + ABC + ÁBC
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+entity tabajo12 is
+    Port ( a,b,c : in  STD_LOGIC;
+           x,y,z : out  STD_LOGIC);
+end tabajo12;
+
+architecture ejemplo of tabajo12 is
+
+begin
+X <= (not A and not B and not C) or (not A and not B and C) 
+or (not a and B and C ) or (A and B and C) ; 
+Y <= (not A and not B and C) or (A and not B and C) 
+or (A and B and not C) ; 
+Z <= (not A and not B and not C) or (not A and B and not C) 
+or (not A and B and C) ;
+end ejemplo;
+
+
+
+
+-- Sumador 
+library IEEE;
+use IEEE.std_logic_1164.all;
+entity sumador is port(A, B: in std_logic_vector (0 to 3);
+S: out std_logic_vector (0 to 3);
+Cout: out std_logic;
+end sumador;
+architecture sumar of sumador is
+signal C: stf_logic_vetor (0 to 2);
+begin
+S(0) <= A(0) xor B(0);
+C(0) <= A(0) and B(0);
+S(1) <= (A(1) xor B(1) xor C(0));
+C(1) <= (A(1) and B(1)) or (C(0) and (A(1) xor B(1)));
+S(2) <= (A(2) xor B(2) xor C(1));
+C(2) <= (A(2) and B(2)  or (C(1) and (A(2) xor B(2)));
+S(3) <= (A(3) xor B(3) xor C(2));
+Cout <= (A(3) and B(3)) or (C2) and (A(3) xor B(3)));
+end sumar;
+
+
+
+--concurrente condicional: when else
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+ENTITY condicional IS
+PORT (A,B,C: IN STD_LOGIC; F: OUT STD_LOGIC);
+END condicional;
+ARCHITECTURE condicionales OF condicional IS
+BEGIN
+F <= '1' WHEN (A='0' AND B='0' AND C='0') ELSE
+'1' WHEN (A='0' AND B='1' AND C='1') ELSE
+'1' WHEN (A='1' AND B='1' AND C='0') ELSE
+'1' WHEN (A='1' AND B='1' AND C='1')ELSE '0';
+END condicionales;
+
+
+
+
+
+
+--mux
+ENTITY mux_1 IS
+PORT (E0,E1,E2,E3 IN STD_LOGIC; 
+SELA, SELB, SELC: IN STD_LOGIC; 
+F: OUT STD_LOGIC);
+END mux_1;
+ARCHITECTURE ejemplo OF mux_1 IS
+BEGIN
+F <= E3 WHEN SELC='1' ELSE
+E2 WHEN SELB='1' ELSE
+E1 WHEN SELA='1' ELSE
+E0;
+END ejemplo;
+
+
+
+
+--segmento de 7
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+ENTITY segmento IS
+PORT(DEC: IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+SEG: OUT STS_LOGIC_VECTOR(6 DOWNTO 0);
+END segmento;
+ARCHITECTURE ejemplo OF segmento IS
+BEGIN
+WITH DEC SELECT
+
+--- ADBCDEFG
+SEG <= '0000001' WHEN '0000'
+'1001111' WHEN '0001'
+'0010010' WHEN '0010'
+'0000110' WHEN '0011'
+'1001100' WHEN '0100'
+'0100100' WHEN '0101'
+'1100000' WHEN '0110'
+'0001110' WHEN '0111'
+'0000000' WHEN '1000'
+'0000100' WHEN '1001'
+END ejemplo;
+
+
+
