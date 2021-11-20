@@ -1,0 +1,26 @@
+--clase1 VHDL.
+-- trabajo1
+
+entity ejemplo1 is
+port( A, B, C: in bit;
+    F0, F1: out bit):
+end ejemplo1;
+
+
+
+
+--ejemplo 2
+enity ejemplo2 is
+port (a,b,c,d,f,g,h, : in bit; 
+F1: out bit);
+end ejemplo2;
+
+
+
+
+--ejemplo3
+entity ejemplo3 is
+port (A3, A2, A1, A0, B3, B2, B2, B0: in bit;
+C3, C2, C1, C0: inout bit;
+S3,S2,S1 ,S0: out bit);
+end ejemplo3;
