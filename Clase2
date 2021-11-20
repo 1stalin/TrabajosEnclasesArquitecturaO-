@@ -1,0 +1,32 @@
+--clase 2
+--Vector
+
+entity ejemplo21 is
+port (A,B, : in bit_vector (3 downto 0);  
+C: inout bit_vector(3 downto 0); 
+S: out bit_vector (3 downto 0));
+end ejemplo21;
+
+
+
+
+--Ejercicio de Vector
+entity ejemplos is
+port (Q: in bit_vector (3 downto 0); 
+F: out bit_vector (0 to 7));
+end ejemplos;
+
+
+
+
+--Ejercicio de Vector
+library ieee;
+--use nombre_libreria.nombrepaquete.all;
+use ieee.std_logic_1164.all;
+
+entity flujo is
+port (X: in std_logic_vector(1 downto 0); 
+A,B: in std_logic; 
+Z: out std_logic_vector(0 to 3));
+end flujo;
+
