@@ -1,0 +1,17 @@
+ library IEEE;
+use IEEE.std_logic_ll64.all;
+entity ejercicioor is
+port(
+A,B: IN std_logic;
+C: out std_logic);
+end ejercicio;
+architecture ord of ejercicioor is
+begin 
+process(A,B)
+begin
+if A = 1 or B= 1 or C=1 then
+C <= '1';
+else C<='0';
+end if;
+en process;
+end ord;
