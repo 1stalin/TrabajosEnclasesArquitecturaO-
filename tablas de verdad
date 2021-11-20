@@ -1,0 +1,20 @@
+--X = ABC + ÁBC + ÀBC + ABC 
+--Y = ÁBC + ABC + ABC 
+--Z = ÁBC + ABC + ÁBC
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+entity tabajo12 is
+    Port ( a,b,c : in  STD_LOGIC;
+           x,y,z : out  STD_LOGIC);
+end tabajo12;
+
+architecture ejemplo of tabajo12 is
+
+begin
+X <= (not A and not B and not C) or (not A and not B and C) 
+or (not a and B and C ) or (A and B and C) ; 
+Y <= (not A and not B and C) or (A and not B and C) 
+or (A and B and not C) ; 
+Z <= (not A and not B and not C) or (not A and B and not C) 
+or (not A and B and C) ;
+end ejemplo;
