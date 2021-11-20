@@ -1,0 +1,41 @@
+
+--ejemplo21
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity ejemplor is
+port (A,B: in std_logic; 
+F0, F1 : out std_logic);
+end ejemplor;
+
+architecture fluj of ejemplor is
+begin
+	F0 <= '1' when (A='0' and B='0') else
+    	  '1' when  (A='0' and B='1') else
+          '0';
+    F1 <= '0' when (A='1' and B='1') else
+    		'1';
+end fluj;
+
+
+
+
+--- ejemplo2
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity funcional is
+port (A,B: in std_logic; 
+c : out std_logic);
+end funcional;
+
+architecture proceso of funcional is
+begin
+process(A,B)
+begin
+	if A = B then
+    c<='1';
+    else c<='0';
+    end if;
+end process;
+end proceso;
