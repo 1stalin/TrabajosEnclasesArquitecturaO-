@@ -1,0 +1,12 @@
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+ENTITY condicional IS
+PORT (A,B,C: IN STD_LOGIC; F: OUT STD_LOGIC);
+END condicional;
+ARCHITECTURE condicionales OF condicional IS
+BEGIN
+F <= '1' WHEN (A='0' AND B='0' AND C='0') ELSE
+'1' WHEN (A='0' AND B='1' AND C='1') ELSE
+'1' WHEN (A='1' AND B='1' AND C='0') ELSE
+'1' WHEN (A='1' AND B='1' AND C='1')ELSE '0';
+END condicionales;
