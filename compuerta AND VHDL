@@ -1,0 +1,13 @@
+
+-- compuerta AND
+library IEEE;
+use IEEE.std_logic_1164.all;
+entity compuerta is
+port (A, B : in std_logic;
+F: out in std_logic );
+end compuerta;
+architecture AND of compuerta is
+begin 
+F <= '1' when (A = '1' and B = '1') 
+else'0'
+end AND;
