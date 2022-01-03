@@ -1,0 +1,64 @@
+DISPENSADORA DE CAFE VHDL
+
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+
+entity cafe is
+port (x,clk: in std_logic;
+z: out std_logic  );
+
+
+
+end cafe;
+
+architecture Behavioral of cafe is
+type estados is (e0,e1,e2,e3);
+signal estado_pres, estado_fut: estados;
+begin
+process (estado_pres, x)
+begin 
+case estado_pres is 
+
+
+when e0 => z <= '0';
+if x ='1' then 
+estado_fut <= e1;
+else 
+estado_fut <= e0;
+end if;
+
+when e1 => z <= '0';
+if x ='1' then 
+estado_fut <= e2;
+else 
+estado_fut <= e1;
+end if;
+
+
+when e2 => z <= '0';
+if x ='1' then 
+estado_fut <= e3;
+else 
+estado_fut <= e2;
+end if;
+
+when e3 => z <= '0';
+if x ='1' then 
+estado_fut <= e0;
+z<='1';
+else 
+estado_fut <= e3;
+z<= '0';
+end if;
+end case;
+end process;
+p_reloj: process(CLK) begin 
+if (CLK'event and CLK='1') then 
+estado_pres<= estado_fut;
+end if; 
+end process p_reloj; 
+
+end Behavioral;
+
